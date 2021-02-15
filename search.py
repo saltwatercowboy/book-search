@@ -2,8 +2,6 @@ from PyPDF2 import PdfFileReader
 import re
 import csv
 
-Bookname = 'Kafka on the Shore'
-
 def text_search(pdf_file):
     with open(pdf_file, 'rb') as f:
         pdf = PdfFileReader(f)
@@ -32,17 +30,18 @@ def text_search(pdf_file):
                 print(queries2)
             
 def writer():
-    rows = [queries1]
     with open('Mentions.csv', 'a', newline='') as f:
         query_writer = csv.writer(f)
-        #query_writer.writerow(['Page Number'] + ['Book'])
+        #query_writer.writerow(['Page Number'] + ['Book'] + ['Query'])
         for query in queries1:
-            query_writer.writerow([query] + [Bookname])
+            query_writer.writerow([query] + [Bookname] + [Search])
         for query in queries2:
-            query_writer.writerow([query] + [Bookname])
+            query_writer.writerow([query] + [Bookname] + [Search])
         
                 
 if __name__ == '__main__':
-    pdf_file = 'Kafka on the Shore.pdf'
+    Search = 'Cat'  
+    Bookname = 'Norwegian Wood'  
+    pdf_file = 'Norwegian Wood.pdf'
     text_search(pdf_file)
     writer()
