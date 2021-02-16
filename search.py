@@ -10,8 +10,7 @@ def text_search(pdf_file):
         queries1 = []
         global queries2
         queries2 = []
-        global queries3
-        queries3 = []
+        
         for i in range (0, numpages):
             page = pdf.getPage(i)
             pagetext = page.extractText()
